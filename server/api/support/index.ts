@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     // Send the email
     try {
       const mailOptions = {
-        from: "abilaiuzen91@gmail.com",
+        from: process.env.sender_email,
         to: process.env.sender_email,
         subject: "Форма обратной связи",
         html: `<b>ФИО:</b> ${body.name}<br><b>Контактные данные:</b> ${body.contact}<br><b>Текст:</b> ${body.text}`,

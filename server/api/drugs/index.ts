@@ -1,6 +1,8 @@
 import * as fs from "node:fs";
+import { createDirectory, clearHTMLAndCut } from "@/server/helper";
 
 const folder = "server/mock/drugs/";
+
 
 const getMockList = (query: any) => {
   const mockFiles = fs.readdirSync(folder).reverse();
@@ -35,14 +37,10 @@ const getMockList = (query: any) => {
   return mockData;
 };
 
-const clearHTMLAndCut = (str: string, length: number) => {
-  return str.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, ' ').substring(0, 150);
-};
-
 export default defineEventHandler(async (event) => {
   if (event.node.req.method === "GET") {
     const query = getQuery(event);
-
+    createDirectory(folder);
     const mockData = getMockList(query);
     return mockData;
   }
@@ -52,6 +50,7 @@ export default defineEventHandler(async (event) => {
     const requestId = Date.now().toString();
     body.id = requestId;
     const fileName = `mock_${requestId}.json`;
+    createDirectory(folder);
     fs.writeFileSync(`${folder}/${fileName}`, JSON.stringify(body));
 
     return true;
