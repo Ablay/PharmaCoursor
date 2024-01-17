@@ -1,0 +1,21 @@
+name: Deploy to server or Storage Box
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH key
+        run: |
+          env
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 22 -t ed25519 88.99.173.232 >> ~/.ssh/known_hosts
+
+      - name: Deploy to server or Storage Box
+        run: |
+          rsync -avzh -e "ssh -i $HOME/.ssh/id_ed25519 -p 22" . root@88.99.173.232:/opt/PharmaCoursor/
+        
