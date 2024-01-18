@@ -15,5 +15,5 @@ jobs:
       - name: Deploy to server
         run: |
           rsync -avzh --exclude='/.git' -e "ssh -o StrictHostKeyChecking=no -i ${{ steps.rsync.outputs.ssh_key_path }} -p 3367" . root@88.99.173.232:/opt/PharmaCoursor/
-          ssh -o StrictHostKeyChecking=no -i ${{ steps.rsync.outputs.ssh_key_path }} -p 3367 "cd /opt/PharmaCoursor; docker compose up -d --build"
+          ssh -o StrictHostKeyChecking=no -i ${{ steps.rsync.outputs.ssh_key_path }} -p 3367 root@88.99.173.232 "cd /opt/PharmaCoursor; docker compose up -d --build"
         
