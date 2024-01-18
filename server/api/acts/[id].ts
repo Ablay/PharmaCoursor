@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
   if (event.node.req.method === "GET") {
     const id = getRouterParam(event, "id");
 
-	createDirectory(folder);
-    const mockData = getMockById(id as string);
+    createDirectory(folder);
+    const mockData = getMockById(folder, id);
 
     return mockData;
   }
