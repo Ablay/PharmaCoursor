@@ -7,16 +7,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        run: |
-          set -x
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          #ssh-keyscan -p 22 -t ed25519 88.99.173.232 >> ~/.ssh/known_hosts
+      - uses: GuillaumeFalourd/setup-rsync@v1.2
+        id: rsync
+        with:
+          ssh_key: ${{ secrets.SSH_KEY }}
 
       - name: Deploy to server
         run: |
-          #echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          rsync -avzh -e "ssh -i $HOME/.ssh/id_ed25519 -p 22" . root@88.99.173.232:/opt/PharmaCoursor/
+          rsync -avzh -e "ssh -i ${{ steps.rsync.outputs.ssh_key_path }}" -p 22" . root@88.99.173.232:/opt/PharmaCoursor/
         
