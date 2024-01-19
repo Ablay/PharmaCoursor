@@ -11,3 +11,5 @@ services:
     environment:
       - NODE_ENV=production
     command: npm start
+    volumes:
+      - ./server/mock:/usr/src/app/server/mock
