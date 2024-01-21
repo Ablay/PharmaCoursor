@@ -13,7 +13,7 @@
 				<v-card-text>
 					<div class="article-content" v-html="data.content"></div>
 					<template v-if="data.file">
-						<v-btn :href="`data:application/octet-stream;base64,${data.file}`" block color="primary" variant="tonal" class="mt-4" :download="data.fileName">Скачать акт</v-btn>
+						<v-btn :href="`data:application/octet-stream;base64,${data.file}`" block color="primary" variant="tonal" class="mt-4" :download="data.fileName">Скачать документ</v-btn>
 					</template>
 				</v-card-text>
 			</v-card>
