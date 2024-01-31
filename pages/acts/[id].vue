@@ -9,7 +9,7 @@
 			<div v-if="!data">Запись не найдена</div>
 			<v-card v-else class="mb-5">
 				<div class="article-title pa-4 pb-0">{{ data.title }}</div>
-				<div class="article-date text-grey px-4">{{ data.date }}</div>
+				<!-- <div v-if="data.date" class="article-date text-grey px-4">{{ data.date }}</div> -->
 				<v-card-text>
 					<div class="article-content" v-html="data.content"></div>
 					<template v-if="data.file">

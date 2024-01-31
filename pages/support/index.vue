@@ -1,4 +1,12 @@
 <template>
+	<v-card class="px-4 pt-4 mb-5">
+		<v-card-title class="form-title font-weight-bold mb-2">Контакты</v-card-title>
+		<v-card-text>
+			<p class="mb-2"><b>Разработчик:</b> Сейтжанов Жеңіс Болатұлы</p>
+			<p class="mb-2"><b>Телефона:</b> 87766637112</p>
+			<p class="mb-2"><b>E-mail:</b> jenis99@list.ru</p>
+		</v-card-text>
+	</v-card>
 	<div class="form-wrap">
 		<h1 class="form-title">Форма обратной связи</h1>
 		<p class="form-description">

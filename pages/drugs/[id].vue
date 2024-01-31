@@ -11,7 +11,7 @@
 				<div class="article-title pa-4 pb-0">{{ data.title }}</div>
 				<div class="d-flex ga-2 px-4 article-date">
 					<div class="text-indigo">{{ data.category }}</div>
-					<div class="text-grey">{{ data.date }}</div>
+					<!-- <div v-if="data.date" class="text-grey">{{ data.date }}</div> -->
 				</div>
 				<v-card-text>
 					<v-img v-if="data.thumbnailFile"

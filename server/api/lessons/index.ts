@@ -11,17 +11,17 @@ const getMockList = (query: any) => {
   for (const fileName of mockFiles) {
     const filePath = `${folder}/${fileName}`;
     const fileContent = fs.readFileSync(filePath, "utf-8");
-    const { id, title, content, date } = JSON.parse(fileContent);
+    const { id, title, content } = JSON.parse(fileContent);
 
     if (query.search && query.search.trim() !== "") {
       if (
         title.toLowerCase().includes(query.search.toLowerCase()) ||
         content.toLowerCase().includes(query.search.toLowerCase())
       ) {
-        mockData.push({ id, title, content: clearHTMLAndCut(content, 150), date });
+        mockData.push({ id, title, content: clearHTMLAndCut(content, 150) });
       }
     } else {
-      mockData.push({ id, title, content: clearHTMLAndCut(content, 150), date });
+      mockData.push({ id, title, content: clearHTMLAndCut(content, 150) });
     }
     limitCounter++;
     if (query.limit && limitCounter >= query.limit) {

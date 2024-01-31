@@ -9,11 +9,14 @@
 			<div v-if="!data">Запись не найдена</div>
 			<v-card v-else class="mb-5">
 				<div class="article-title pa-4 pb-0">{{ data.title }}</div>
-				<div class="article-date text-grey px-4">{{ data.date }}</div>
+				<!-- <div v-if="data.date" class="article-date text-grey px-4">{{ data.date }}</div> -->
 				<v-card-text>
 					<div class="article-content" v-html="data.content"></div>
 					<template v-if="data.testFile">
-						<v-btn :href="`data:application/octet-stream;base64,${data.testFile}`" block color="primary" variant="tonal" class="mt-4" :download="data.testFileName">Скачать тест</v-btn>
+						<iframe :src="`data:application/pdf;base64,${data.testFile}`" style="width: 100%; height: 500px; border: none;">
+
+						</iframe>
+						<v-btn :href="`data:application/octet-stream;base64,${data.testFile}`" block color="primary" variant="tonal" class="mt-4" :download="data.testFileName">Скачать материал</v-btn>
 					</template>
 
 					<template v-if="data.testAns?.trim()">

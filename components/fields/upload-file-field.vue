@@ -1,7 +1,7 @@
 <template>
 	<div class="drop-file" @drop.prevent="handleDrop" @dragenter.prevent @dragover.prevent @click="fileUploadClicked()">
 		<span class="select">Выберите файл</span> или перетащите в поле
-		<div class="allowed">{{ accept.join(', ').toUpperCase() }} до 30Мб</div>
+		<div class="allowed">{{ accept.join(', ').toUpperCase() }} до 5Мб</div>
 		<div v-if="fileObj">{{ fileObj.name }}</div>
 		<v-icon v-if="fileObj" class="clear-btn" size="large" @click="clearFile" icon="mdi-close-circle"></v-icon>
 	</div>
@@ -54,7 +54,7 @@ const toBase64 = (_file) => {
 			const fileName = _file.name.toLowerCase();
 			const isValidExtension = props.accept.some(extension => fileName.endsWith(extension));
 
-			const isValidSize = _file.size <= 30 * 1024 * 1024;
+			const isValidSize = _file.size <= 5 * 1024 * 1024;
 
 			fileObj.value['isValid'] = isValidExtension && isValidSize;
 
