@@ -15,7 +15,7 @@
 		<v-navigation-drawer v-model="drawer" width="320">
 			<template v-slot:prepend>
 				<v-list-item lines="two"
-					title="Абылай Әділ" subtitle="Студент">
+					:title="user.userInfo.value.name" :subtitle="user.userInfo.value.subtitle">
 					<template #prepend>
 						<v-avatar class="mr-1" color="primary" size="36">
 					<v-icon icon="mdi-doctor"></v-icon>
@@ -31,7 +31,7 @@
 
 			<template v-slot:append>
 				<v-list class="mb-4">
-					<v-list-item prepend-icon="mdi-logout" title="Выйти"></v-list-item>
+					<v-list-item prepend-icon="mdi-logout" title="Выйти" @click="logout()"></v-list-item>
 				</v-list>
 			</template>
 		</v-navigation-drawer>
@@ -45,6 +45,8 @@
   
 <script setup>
 const drawer = ref(false);
+const user = useUser();
+
 const links = [
 	{
 		url: '/',
@@ -71,5 +73,9 @@ const links = [
 		text: 'Обратная связь',
 		icon: 'mdi-face-agent'
 	}
-]
+];
+const logout = () => {
+	user.userInfo.value = null;
+	navigateTo('/login');
+}
 </script>

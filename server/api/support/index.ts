@@ -10,16 +10,16 @@ export default defineEventHandler(async (event) => {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.sender_email,
-        pass: process.env.sender_email_password,
+        user: 'jenis99@list.ru', //process.env.sender_email,
+        pass: 'ypqu bqhc lveu ugyu', //process.env.sender_email_password,
       },
     });
 
     // Send the email
     try {
       const mailOptions = {
-        from: process.env.sender_email,
-        to: process.env.sender_email,
+        from: 'jenis99@list.ru', //process.env.sender_email,
+        to: 'jenis99@list.ru', //process.env.sender_email,
         subject: "Форма обратной связи",
         html: `<b>ФИО:</b> ${body.name}<br><b>Контактные данные:</b> ${body.contact}<br><b>Текст:</b> ${body.text}`,
       };
