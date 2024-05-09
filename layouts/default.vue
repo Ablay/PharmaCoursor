@@ -15,7 +15,7 @@
 		<v-navigation-drawer v-model="drawer" width="320">
 			<template v-slot:prepend>
 				<v-list-item lines="two"
-					:title="user.userInfo.value.name" :subtitle="user.userInfo.value.subtitle">
+					:title="userInfo?.fullname" :subtitle="roles[userInfo?.role]">
 					<template #prepend>
 						<v-avatar class="mr-1" color="primary" size="36">
 					<v-icon icon="mdi-doctor"></v-icon>
@@ -45,7 +45,13 @@
   
 <script setup>
 const drawer = ref(false);
-const user = useUser();
+const { userInfo } = useUser();
+
+const roles = {
+	"1": "Администратор",
+	"2": "Студент",
+	"3": "Фармацевт",
+}
 
 const links = [
 	{
@@ -74,8 +80,16 @@ const links = [
 		icon: 'mdi-face-agent'
 	}
 ];
+if(+userInfo.value?.role == 1) {
+	links.push({
+		url: '/users',
+		text: 'Пользователи',
+		icon: 'mdi-account-group-outline'
+	});
+}
+
 const logout = () => {
-	user.userInfo.value = null;
+	userInfo.value = null;
 	navigateTo('/login');
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="text-h6 mb-4">Нормативно правовые акты</div>
-		<v-btn to="/acts/add" class="mb-3" color="green" flat>Добавить</v-btn>
+		<v-btn v-if="+userInfo?.role == 1" to="/acts/add" class="mb-3" color="green" flat>Добавить</v-btn>
 		<v-text-field class="mb-5" v-model="searchTextModel" :disabled="loading" density="compact" variant="solo" flat
 			label="Поиск" append-inner-icon="mdi-magnify" single-line hide-details clearable persistent-clear
 			@click:append-inner="triggerSearch" @click:clear="clearAndTriggerSearch"></v-text-field>
@@ -18,6 +18,7 @@
 </template>
   
 <script setup>
+const { userInfo } = useUser();
 const searchTextModel = ref(null);
 
 const searchText = ref(null);

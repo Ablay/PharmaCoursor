@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="text-h6 mb-4">Лекарственные препараты</div>
-		<v-btn to="/drugs/add" class="mb-3" color="green" flat>Добавить</v-btn>
+		<v-btn v-if="+userInfo?.role == 1" to="/drugs/add" class="mb-3" color="green" flat>Добавить</v-btn>
 		<v-select v-model="selectedCategory" class="mb-5" label="Категория" :items="categories" :disabled="loading" density="compact" flat hide-details
 			clearable persistent-clear variant="solo"></v-select>
 		<v-text-field class="mb-5" v-model="searchTextModel" :disabled="loading" density="compact" variant="solo" flat
@@ -20,6 +20,7 @@
 </template>
   
 <script setup>
+const { userInfo } = useUser();
 const categories = getCategories();
 const searchTextModel = ref(null);
 const selectedCategory = ref(null);

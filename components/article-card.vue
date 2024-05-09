@@ -15,7 +15,7 @@
 		<v-card-actions class="px-4">
 			<div v-if="item.date" class="text-grey">{{ item.date }}</div>
 			<v-spacer></v-spacer>
-			<v-btn color="red" icon="mdi-delete-outline" @click="emit('onDelete', item.id)"></v-btn>
+			<v-btn v-if="+userInfo?.role == 1" color="red" icon="mdi-delete-outline" @click="emit('onDelete', item.id)"></v-btn>
 			<v-btn color="primary" variant="tonal" :to="openLink">Открыть</v-btn>
 		</v-card-actions>
 	</v-card>
@@ -26,6 +26,7 @@ defineProps({
 	item: Object,
 	openLink: String
 })
+const { userInfo } = useUser();
 const emit = defineEmits(['onDelete']);
 </script>
 
