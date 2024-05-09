@@ -144,21 +144,6 @@ const loginFormSubmit = async () => {
 			isLoading.value = false;
 		});
 	}
-	// if(email.value.value == 'jenis99@list.ru' && password.value.value == '123456') {
-	// 	const userInfo = useCookie('userInfo');
-	// 	userInfo.value = {
-	// 		name: 'Сейтжанов Женис',
-	// 		phone: '',
-	// 		email: '',
-	// 		password: '',
-	// 		role: 1, // 1 admin, 2 student, 3 pharmacist
-	// 		status: 1 // 1 acepted, 2 rejected, 3 waiting
-	// 	};
-	// 	navigateTo('/');
-	// } else {
-	// 	alert('Неверный логин или пароль!');
-	// }
-	
 };
 
 
